@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="-2b6AqItZFCxdJBeQ6v-8E-z7maEGmGveQtZCCC5S-4" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Consultant – EMS Solutions | SMT & AOI Process Expert</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --accent: #00f2fe;
+            --dark-bg: #070b19;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --text-main: #ffffff;
+            --text-sub: #b0c4de;
+            --danger-color: #ff4d4d;
+            --success-color: #00e676;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(0, 210, 255, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(58, 123, 213, 0.12) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(7, 11, 25, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .brand-logo i {
+            color: var(--primary);
+            font-size: 26px;
+        }
+
+        .brand-logo span {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px;
+            border-radius: 30px;
+            border: 1px solid var(--card-border);
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+        }
+
+        .page-section {
+            display: none;
+            padding: 120px 8% 60px 8%;
+            min-height: 85vh;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 40px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .tagline-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 210, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 210, 255, 0.5);
+        }
+
+        /* Emergency Support Banner */
+        .emergency-banner {
+            background: linear-gradient(90deg, rgba(255, 77, 77, 0.15), rgba(0, 210, 255, 0.15));
+            border: 1px solid var(--danger-color);
+            border-radius: 15px;
+            padding: 15px 25px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.2);
+        }
+
+        .emergency-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .emergency-text i {
+            font-size: 24px;
+            color: var(--danger-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* SMT Machine Showcase Box for Home Page */
+        .smt-machine-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .machine-list-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .machine-item-box {
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 8px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .machine-item-box:hover {
+            border-color: var(--primary);
+            background: rgba(0, 210, 255, 0.18);
+            transform: translateY(-3px);
+        }
+
+        .machine-item-box i {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .machine-item-box h5 {
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .stats-badge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-card h4 {
+            font-size: 20px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .stat-card p {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* Comparison Section (Before vs After) */
+        .comparison-container {
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .comp-card {
+            padding: 25px;
+            border-radius: 18px;
+            border: 1px solid var(--card-border);
+        }
+
+        .comp-card.before {
+            background: rgba(255, 77, 77, 0.05);
+            border-color: rgba(255, 77, 77, 0.3);
+        }
+
+        .comp-card.after {
+            background: rgba(0, 230, 118, 0.05);
+            border-color: rgba(0, 230, 118, 0.3);
+        }
+
+        .comp-card h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comp-list {
+            list-style: none;
+        }
+
+        .comp-list li {
+            font-size: 14px;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Defects & Brands Badges */
+        .chips-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .chip-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chip-badge i {
+            color: var(--primary);
+        }
+
+        .digital-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(7, 11, 25, 0.98));
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0, 210, 255, 0.25);
+            text-align: left;
+        }
+
+        .card-header-flex {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .avatar-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: #fff;
+            border: 3px solid #fff;
+        }
+
+        .card-title-box h3 {
+            font-size: 19px;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .card-title-box p {
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .badge-list {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .badge-item {
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+
+        .card-details-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+
+        .card-details-grid div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-details-grid i {
+            color: var(--primary);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 28px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.2);
+        }
+
+        .glass-card i {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 18px;
+        }
+
+        .glass-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .glass-card p {
+            color: var(--text-sub);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .flow-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 180px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .flow-step i {
+            font-size: 30px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .flow-arrow {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 35px;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+        }
+
+        .form-group select option {
+            background: var(--dark-bg);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            z-index: 1000;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                gap: 12px;
+                padding: 15px;
+            }
+            .nav-tabs {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-grid, .contact-grid, .comparison-container {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 30px;
+            }
+            .machine-list-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .flow-arrow {
+                display: none;
+            }
+            .emergency-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- Header Navigation Bar -->
+    <header>
+        <a href="#" class="brand-logo" onclick="switchPage('home')">
+            <i class="fa-solid fa-microchip"></i>
+            <div>RSS Consultant <span>– EMS Solutions</span></div>
+        </a>
+        <ul class="nav-tabs">
+            <li><a class="nav-link active" onclick="switchPage('home')">Home</a></li>
+            <li><a class="nav-link" onclick="switchPage('services')">Services</a></li>
+            <li><a class="nav-link" onclick="switchPage('flow')">Quality Flow</a></li>
+            <li><a class="nav-link" onclick="switchPage('modes')">Support Modes</a></li>
+            <li><a class="nav-link" onclick="switchPage('why-choose')">Why Choose RSS</a></li>
+            <li><a class="nav-link" onclick="switchPage('about')">About Consultant</a></li>
+            <li><a class="nav-link" onclick="switchPage('contact')">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918433692239?text=Hello%20Ramesh%20Sir,%20I%20need%20SMT/AOI%20Consultancy%20Support." class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- PAGE 1: HOME -->
+    <section id="home" class="page-section active">
+
+        <!-- Emergency Support Helpline Banner -->
+        <div class="emergency-banner">
+            <div class="emergency-text">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <div>
+                    <strong style="color: #fff; font-size: 15px;">Facing High Rejections or AOI Bottlenecks Right Now?</strong>
+                    <p style="color: var(--text-sub); font-size: 13px;">Get Immediate Onsite or Remote Technical Assistance for your SMT Line.</p>
+                </div>
+            </div>
+            <a href="https://wa.me/918433692239?text=Urgent%20Support%20Required%20for%20SMT%20Line" target="_blank" class="btn btn-primary" style="padding: 8px 20px; font-size: 13px;"><i class="fa-brands fa-whatsapp"></i> Urgent Support</a>
+        </div>
+
+        <div class="hero-grid">
+            <div>
+                <span class="tagline-badge"><i class="fa-solid fa-chart-line"></i> BETTER PROCESS • BETTER QUALITY • BETTER RESULTS</span>
+                <h1 class="hero-title">High Precision SMT & AOI Quality Optimization</h1>
+                <p style="color: var(--text-sub); font-size: 16px; line-height: 1.7; margin-bottom: 25px;">
+                    Specialized consultancy for SMT Line performance, AOI Program Fine-Tuning, and Defect Elimination across Electronics Manufacturing Facilities.
+                </p>
+
+                <!-- Major SMT Defects Eliminated Chips -->
+                <div style="margin-bottom: 20px;">
+                    <span style="font-size: 12px; color: var(--primary); font-weight: 600; text-transform: uppercase;">Key SMT Defects Eliminated:</span>
+                    <div class="chips-wrapper">
+                        <span class="chip-badge"><i class="fa-solid fa-circle-check"></i> Tombstoning</span>
+                        <span class="chip-badge"><i class="fa-solid fa-circle-check"></i> Solder Bridging</span>
+                        <span class="chip-badge"><i class="fa-solid fa-circle-check"></i> Component Shift</span>
+                        <span class="chip-badge"><i class="fa-solid fa-circle-check"></i> Solder Voids</span>
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="switchPage('contact')"><i class="fa-solid fa-paper-plane"></i> Get Technical Support</button>
+                </div>
+            </div>
+
+            <!-- SMT Line Machines Showcase -->
+            <div class="smt-machine-card">
+                <h3 style="font-size: 20px; color: #fff;"><i class="fa-solid fa-industry" style="color: var(--primary); margin-right: 8px;"></i> SMT Line Equipment Expertise</h3>
+                <p style="font-size: 13px; color: var(--text-sub); margin-top: 5px;">Complete optimization for all key machines in SMT Line:</p>
+                
+                <div class="machine-list-grid">
+                    <div class="machine-item-box">
+                        <i class="fa-solid fa-print"></i>
+                        <h5>Printing Machine</h5>
+                    </div>
+                    <div class="machine-item-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <h5>SPI Machine</h5>
+                    </div>
+                    <div class="machine-item-box">
+                        <i class="fa-solid fa-microchip"></i>
+                        <h5>Pick & Place</h5>
+                    </div>
+                    <div class="machine-item-box">
+                        <i class="fa-solid fa-temperature-high"></i>
+                        <h5>Reflow Machine</h5>
+                    </div>
+                    <div class="machine-item-box" style="grid-column: span 2;">
+                        <i class="fa-solid fa-eye"></i>
+                        <h5>AOI Machine</h5>
+                    </div>
+                </div>
+
+                <div class="stats-badge-grid">
+                    <div class="stat-card">
+                        <h4>95% - 99%</h4>
+                        <p>FPY Target Focus</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>False Calls</h4>
+                        <p>Significant Reduction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Before vs After Comparison Card Section -->
+        <div class="comparison-container">
+            <div class="comp-card before">
+                <h3 style="color: var(--danger-color);"><i class="fa-solid fa-circle-xmark"></i> Without Optimization</h3>
+                <ul class="comp-list">
+                    <li><i class="fa-solid fa-xmark" style="color: var(--danger-color);"></i> High AOI False Call Alarm Rate</li>
+                    <li><i class="fa-solid fa-xmark" style="color: var(--danger-color);"></i> Lower First Pass Yield (FPY)</li>
+                    <li><i class="fa-solid fa-xmark" style="color: var(--danger-color);"></i> Frequent Unplanned SMT Line Stops</li>
+                    <li><i class="fa-solid fa-xmark" style="color: var(--danger-color);"></i> Solder Defect Rejections</li>
+                </ul>
+            </div>
+
+            <div class="comp-card after">
+                <h3 style="color: var(--success-color);"><i class="fa-solid fa-circle-check"></i> With RSS Consultancy</h3>
+                <ul class="comp-list">
+                    <li><i class="fa-solid fa-check" style="color: var(--success-color);"></i> Drastically Reduced AOI False Calls</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--success-color);"></i> 95% - 99% FPY Optimization Target</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--success-color);"></i> Smooth Line Flow & Parameter Control</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--success-color);"></i> Standard SOPs & Operator Guidelines</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Supported Brands Section -->
+        <div style="margin-top: 40px; text-align: center;">
+            <p style="font-size: 13px; color: var(--primary); letter-spacing: 1px; font-weight: 600; text-transform: uppercase;">Standards & Equipment Support</p>
+            <div class="chips-wrapper" style="justify-content: center; margin-top: 10px;">
+                <span class="chip-badge"><i class="fa-solid fa-award"></i> IPC-A-610 Standard Compliant</span>
+                <span class="chip-badge"><i class="fa-solid fa-gears"></i> Multi-Brand AOI Tuning</span>
+                <span class="chip-badge"><i class="fa-solid fa-shield-halved"></i> Quality Audit Ready</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 2: SERVICES -->
+    <section id="services" class="page-section">
+        <div class="section-header">
+            <p>Our Services</p>
+            <h2>Technical Consultancy Solutions</h2>
+        </div>
+        <div class="cards-grid">
+            <div class="glass-card">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <h3>AOI Program & False Call Analysis</h3>
+                <p>Optimization of AOI inspection programs to reduce false alarms and catch genuine defects accurately.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-gears"></i>
+                <h3>SMT Process Improvement</h3>
+                <p>Line balancing, efficiency tuning, and parameter optimization for smooth production.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-bug"></i>
+                <h3>Defect / Root Cause Analysis</h3>
+                <p>Identification and elimination of soldering issues like tombstoning, bridging, and solder voids.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-arrow-trend-up"></i>
+                <h3>FPY & Rejection Improvement</h3>
+                <p>Maximizing First Pass Yield (FPY) to minimize production rework and component loss.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-eye"></i>
+                <h3>AOI / Visual Inspection Standards</h3>
+                <p>Setting up standard quality inspection guidelines based on IPC-A-610 standards.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-file-lines"></i>
+                <h3>SOP, WI & Documentation</h3>
+                <p>Preparing clear Work Instructions (WI) and Standard Operating Procedures (SOP).</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <h3>Operator Training & Support</h3>
+                <p>Practical training sessions for SMT line operators and quality assurance engineers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 3: SMT QUALITY FLOW -->
+    <section id="flow" class="page-section">
+        <div class="section-header">
+            <p>Process Optimization</p>
+            <h2>SMT to AOI Quality Flow</h2>
+        </div>
+        <div class="flow-container">
+            <div class="flow-step">
+                <i class="fa-solid fa-print"></i>
+                <h4>1. Solder Paste Printing</h4>
+                <p style="font-size: 12px; color: var(--text-sub);">Stencil & Paste Control</p>
+            </div>
+            <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="flow-step">
+                <i class="fa-solid fa-microchip"></i>
+                <h4>2. Component Placement</h4>
+                <p style="font-size: 12px; color: var(--text-sub);">Pick & Place Precision</p>
+            </div>
+            <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="flow-step">
+                <i class="fa-solid fa-temperature-high"></i>
+                <h4>3. Reflow Soldering</h4>
+                <p style="font-size: 12px; color: var(--text-sub);">Thermal Profiling</p>
+            </div>
+            <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="flow-step">
+                <i class="fa-solid fa-camera"></i>
+                <h4>4. AOI Inspection</h4>
+                <p style="font-size: 12px; color: var(--text-sub);">Defect Detection</p>
+            </div>
+            <div class="flow-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+            <div class="flow-step">
+                <i class="fa-solid fa-shield-check"></i>
+                <h4>5. Quality Assurance</h4>
+                <p style="font-size: 12px; color: var(--text-sub);">FPY Optimization</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 4: SUPPORT MODES -->
+    <section id="modes" class="page-section">
+        <div class="section-header">
+            <p>Engagement Options</p>
+            <h2>How We Provide Support</h2>
+        </div>
+        <div class="cards-grid">
+            <div class="glass-card" style="text-align: center;">
+                <i class="fa-solid fa-user-check"></i>
+                <h3>FREELANCE</h3>
+                <p>Flexible project-based consultancy for new setup and quality audits.</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>REMOTE</h3>
+                <p>Online support for AOI program tuning, data analysis, and technical guidance.</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <i class="fa-solid fa-industry"></i>
+                <h3>ONSITE SUPPORT</h3>
+                <p>Direct hands-on support at your plant location in Mumbai, Maharashtra, and across India.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 5: WHY CHOOSE RSS CONSULTANT -->
+    <section id="why-choose" class="page-section">
+        <div class="section-header">
+            <p>Our Core Strengths</p>
+            <h2>Why Choose RSS Consultant?</h2>
+        </div>
+        <div class="cards-grid">
+            <div class="glass-card">
+                <i class="fa-solid fa-bullseye"></i>
+                <h3>Focused AOI Accuracy</h3>
+                <p>Precision tuning of AOI inspection algorithms to eliminate unwanted false alarms while securing 100% defect detection.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-sliders"></i>
+                <h3>Line-to-Line Fine Tuning</h3>
+                <p>Hands-on parameter calibration across Printer, Pick & Place, Reflow, and AOI inspection equipment.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h3>Targeted FPY Yields</h3>
+                <p>Dedicated root cause analysis strategy to achieve and maintain 95% to 99% First Pass Yields.</p>
+            </div>
+            <div class="glass-card">
+                <i class="fa-solid fa-hands-holding-child"></i>
+                <h3>Tailored Engagement</h3>
+                <p>Available for Freelance, Onsite Plant Audits, or Remote Technical Guidance as per plant requirements.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 6: ABOUT CONSULTANT -->
+    <section id="about" class="page-section">
+        <div class="section-header">
+            <p>Consultant Profile</p>
+            <h2>Ramesh Sanjay Sasane</h2>
+        </div>
+        <div class="hero-grid">
+            <div class="digital-card">
+                <div class="card-header-flex">
+                    <div class="avatar-box">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <div class="card-title-box">
+                        <h3>RAMESH SANJAY SASANE</h3>
+                        <p>SMT / AOI PROCESS CONSULTANT</p>
+                    </div>
+                </div>
+                <div class="badge-list">
+                    <span class="badge-item">SMT Process</span>
+                    <span class="badge-item">AOI Program</span>
+                    <span class="badge-item">FPY Optimization</span>
+                    <span class="badge-item">Defect Analysis</span>
+                </div>
+                <div class="card-details-grid">
+                    <div><i class="fa-solid fa-phone"></i> +91 8433692239</div>
+                    <div><i class="fa-solid fa-envelope"></i> rameshsasane2816@gmail.com</div>
+                    <div><i class="fa-solid fa-location-dot"></i> Mumbai, Maharashtra, India</div>
+                </div>
+            </div>
+            <div>
+                <h3 style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">SMT / AOI Process Consultant</h3>
+                <blockquote style="background: rgba(0,210,255,0.05); border-left: 3px solid var(--primary); padding: 15px; border-radius: 8px; margin-bottom: 20px; font-style: italic; color: var(--text-sub);">
+                    "Helping Electronics Manufacturers Improve Quality, Reduce Defects & Increase FPY."
+                </blockquote>
+                
+                <div class="cards-grid" style="grid-template-columns: 1fr 1fr; margin-top: 20px;">
+                    <div class="glass-card">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <h4>Expertise</h4>
+                        <p>SMT | AOI | SPI | Reflow QC | FPY Improvement</p>
+                    </div>
+                    <div class="glass-card">
+                        <i class="fa-solid fa-handshake"></i>
+                        <h4>Commitment</h4>
+                        <p>Client Satisfaction & On-Time Delivery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 7: CONTACT -->
+    <section id="contact" class="page-section">
+        <div class="section-header">
+            <p>Get In Touch</p>
+            <h2>Request Technical Support</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-form">
+                <form action="https://formspree.io/f/rameshsasane2816@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" name="company" placeholder="Enter company name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile / WhatsApp Number</label>
+                        <input type="tel" name="phone" placeholder="Enter contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Required Service</label>
+                        <select name="service">
+                            <option>AOI Program & False Call Analysis</option>
+                            <option>SMT Process Improvement</option>
+                            <option>Defect / Root Cause Analysis</option>
+                            <option>FPY & Rejection Improvement</option>
+                            <option>Operator Training & Support</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Requirement Details</label>
+                        <textarea name="message" rows="4" placeholder="Describe your requirement..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Send Requirement</button>
+                </form>
+            </div>
+
+            <div>
+                <div class="glass-card" style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Call / WhatsApp</h3>
+                    <p style="font-size: 18px; color: #fff; font-weight: 600;">+91 8433692239</p>
+                </div>
+                <div class="glass-card" style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email Address</h3>
+                    <p style="font-size: 16px; color: #fff;">rameshsasane2816@gmail.com</p>
+                </div>
+                <div class="glass-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Location</h3>
+                    <p style="font-size: 16px; color: #fff;">Mumbai, Maharashtra, India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Switching Pages -->
+    <script>
+        function switchPage(pageId) {
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => link.classList.remove('active'));
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const activeLink = Array.from(links).find(link => link.getAttribute('onclick').includes(pageId));
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
